@@ -2,3 +2,5 @@
 
 - VisBug : https://visbug.web.app/
 - Lorem Picsum : https://picsum.photos/
+- Can I use : https://caniuse.com/
+- cubic-bezier : https://cubic-bezier.com
