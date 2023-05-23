@@ -1,25 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="./index.css">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parallax Scrolling</title>
-</head>
-<body>
-    <header>
-        <a class="button-in-header">THE MOUNTAIN</a>
-        <div id="right-buttons">
-            <a class="button-in-header active-menu">MOUNTAIN</a>
-            <a class="button-in-header">AMAZING BLOG</a>
-            <a class="button-in-header">AMAZING NEWS</a>
-        </ul>
-    </header>
-    <div id="image-wrapper">
-        <?xml version="1.0" encoding="utf-8"?>
-        <!-- Generator: Adobe Illustrator 27.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-        <svg version="1.1" id="main-image" xmlns="http://www.w3.org/2000/svg"
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="main-image" xmlns="http://www.w3.org/2000/svg"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
 	x="0px" y="0px" viewBox="0 0 1920 1080" style="enable-background:new 0 0 1920 1080;"
 	xml:space="preserve">
@@ -1522,53 +1503,3 @@
 				</g>
 			</g>
 		</svg>
-    </div>
-</body>
-<script>
-    document.querySelectorAll(".button-in-header").forEach((element) => {
-        element.addEventListener("click", (event) => {
-            document.querySelector(".active-menu").classList.remove("active-menu");
-            element.classList.add("active-menu");
-        });
-    });
-
-    const sun = document.getElementById("sun");
-
-    const grayClouds = document.getElementById("gray-clouds");
-    const whiteClouds = document.getElementById("white-clouds");
-
-    const bird1 = document.getElementById("bird1");
-    const bird2 = document.getElementById("bird2");
-    const bird3 = document.getElementById("bird3");
-
-    const mountain0 = document.getElementById("mountain0");
-    const mountain1 = document.getElementById("mountain1");
-    const mountain2 = document.getElementById("mountain2");
-    const mountain3 = document.getElementById("mountain3");
-    const mountain4 = document.getElementById("mountain4");
-    const mountain5 = document.getElementById("mountain5");
-    const mountain6 = document.getElementById("mountain6");
-    const mountain7 = document.getElementById("mountain7");
-
-    window.addEventListener("scroll", () => {
-        sun.style.transform = `translateY(${window.scrollY * 1.05}px)`;
-
-        grayClouds.style.transform = `translateX(${window.scrollY * 0.125}px)`;
-        whiteClouds.style.transform = `translateX(${window.scrollY * -0.125}px)`;
-
-        bird1.style.transform = `translateX(${window.scrollY}px)`;
-        bird2.style.transform = `translateX(${window.scrollY * -3.5}px)`;
-        bird3.style.transform = `translateX(${window.scrollY * -0.5}px)`;
-
-        mountain0.style.transform = `translateY(${window.scrollY * 0.95}px)`;
-        mountain1.style.transform = `translateY(${window.scrollY * 0.93}px)`;
-        mountain2.style.transform = `translateY(${window.scrollY * 0.9}px)`;
-        mountain3.style.transform = `translateY(${window.scrollY * 0.8}px)`;
-        mountain4.style.transform = `translateY(${window.scrollY * 0.7}px)`;
-        mountain5.style.transform = `translateY(${window.scrollY * 0.6}px)`;
-        mountain6.style.transform = `translateY(${window.scrollY * 0.3}px)`;
-        mountain7.style.transform = `translateY(${window.scrollY * 0.1}px)`;
-
-    });
-</script>
-</html>
