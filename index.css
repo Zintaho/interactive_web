@@ -91,6 +91,8 @@ a {
 
 #image-wrapper {
     overflow: hidden;
+    display: flex;
+    justify-content: center;
 }
 
 #main-image {
