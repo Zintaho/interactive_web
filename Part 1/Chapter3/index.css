@@ -81,6 +81,19 @@ a {
     background-color: #127374;
 }
 
+.long-text {
+    display: none;
+}
+
+@media (min-width: 880px) {
+    .long-text {
+        display: inline;
+    }
+    .short-text {
+        display: none;
+    }
+}
+
 #right-buttons {
     display:flex;
 }
@@ -119,6 +132,13 @@ a {
     font-weight: 700;
     gap: 50px;
     display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 880px) {
+    #mountain-tag-wrapper {
+        flex-direction: row;
+    }
 }
 
 .mountain-content-wrapper {
