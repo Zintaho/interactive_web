@@ -1,0 +1,82 @@
+body {
+    background-color: #111;
+    height: 5000px;
+}
+
+#main-img-wrapper {
+    text-align: center;
+    margin-top: 139px;
+}
+
+#main-img-wrapper img {
+    width: 320px;
+}
+
+#intro-main {
+    color: white;
+    display: flex;
+    margin: 54px auto 140px;
+    width: 320px;
+    font-size: 40px;
+    font-weight: 500;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#intro-main p {
+    text-align: center;
+}
+
+#intro-main p#join-us-text {
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 73px;
+    opacity: 0.6; 
+}
+
+@keyframes upAndDown {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transfrom: translateY(10px);
+    }
+}
+
+#down-arrow-icon {
+    width: 33px;
+    animation: upAndDown 1s infinite;
+}
+
+#list-item-wrapper {
+    margin: 0 auto 500px;
+    width: 383px;
+}
+
+.list-item::before {
+    display: inline-block;
+    background-size: 51px 53px;
+    width: 51px;
+    height: 53px;
+    content: "";
+    background-image: url('./imgs/icons/dark_house.png');
+}
+
+.list-item {
+    display: inline;
+    font-size:48px;
+    font-weight: 600;
+}
+
+.list-item#on::before {
+    background-image: url('./imgs/icons/light_house.png');
+}
+
+.list-item#on {
+    color: white;
+}

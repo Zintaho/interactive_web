@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Bank</title>
+</head>
+<body>
+    <div id="main-img-wrapper">
+        <img src="imgs/Lovepik_com-401339128-data-management-data-analysis-icon-free-vector-illustration-mate.png" alt="coding image">
+    </div>
+    <div id="intro-main">
+        <p>이미 모두의 은행,  패스트뱅크</p>
+        <p>함께 일해요</p>
+        <p id="join-us-text">Join us!</p>
+        <img id="down-arrow-icon" src="imgs/down-arrow.png" alt="down arrow">
+    </div>
+    <ul id="list-item-wrapper">
+        <li class="list-item">감자칩프라푸치노</li>
+        <li class="list-item">남자</li>
+        <li class="list-item">담자바구니에한가득</li>
+        <li class="list-item">람자</li>
+        <li class="list-item">맘자</li>
+        <li class="list-item">밤자</li>
+        <li class="list-item">삼자</li>
+        <li class="list-item">암자</li>
+        <li class="list-item">잠자기전에양치했나요</li>
+        <li class="list-item">참자참아야한다</li>
+        <li class="list-item">캄자</li>
+        <li class="list-item">탐자</li>
+        <li class="list-item">팜자</li>
+        <li class="list-item">함자</li>
+    </ul>
+</body>
+
+<script>
+    const listStyleChangingStartY = 383;
+    const listStyleChangingEndY = 1400;
+
+    const listItems = document.querySelectorAll(".list-item");
+
+    const division = (listStyleChangingEndY - listStyleChangingStartY) / listItems.length;
+
+    window.addEventListener("scroll", () => {
+        const current = document.querySelector(".list-item#on");
+        if (current) current.removeAttribute("id");
+
+        if (listStyleChangingStartY < window.scrollY 
+        && window.scrollY < listStyleChangingEndY) {
+            const index = Math.floor((window.scrollY - listStyleChangingStartY) / division);
+            if (index < listItems.length) listItems[index].id = "on";
+        }
+    });
+</script>
+</html>
