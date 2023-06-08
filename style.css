@@ -80,3 +80,16 @@ body {
 .list-item#on {
     color: white;
 }
+
+#panel1-img {
+    position: relative;
+    overflow: hidden;
+    height: 320px;
+}
+
+#flying-santa {
+    position: absolute;
+    right: -80px;
+    height: 325px;
+    transform: translate(80px, -13px) rotate(23deg);
+}
