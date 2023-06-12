@@ -38,6 +38,16 @@
         <section id="panel1-img">
             <img id="flying-santa" src="./imgs/santa_flying.png" alt="santa">
         </section>
+        <section id="video-section">
+            <div id="fixed-wrapper">
+                <video id="video" src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+                 type="video/mp4"></video>
+                 <div id="fixed-description">
+                    <div>혁신이 만든</div>
+                    <div>압도적인 성장</div>
+                 </div>
+            </div>
+        </section>
     </main>
 </body>
 
@@ -51,6 +61,36 @@
 
     const panelImg = document.getElementById('panel1-img');
     const flyingSanta = document.getElementById('flying-santa');
+
+    const videoPlayBack = 500;
+
+    const fixedWrapper = document.getElementById("fixed-wrapper");
+    const videoSection = document.getElementById("video-section");
+    const videoElement = document.getElementById("video");
+
+    const fixedDescription = document.getElementById("fixed-description");
+    const fixedDescriptionAppearTiming = 3470;
+    const fixedDescriptionDisappearTiming = 3800;
+
+    function centerElement(elementId, video) {
+        const element = document.getElementById(elementId);
+        const parent = element.parentElement;
+
+        if (window.scrollY > parent.offsetTop - (document.documentElement.clientHeight - element.offsetHeight) / 2) {
+            element.style.position = "fixed";
+            element.style.top = "50%";
+            element.style.left = "50%";
+            element.style.transform = "translate(-50%, -50%)";
+        } else {
+            element.style.position = "relative";
+            element.style.top = "initial";
+            element.style.left = "initial";
+            element.style.transform = "initial";
+
+        }
+
+        if (video) video.currentTime = (window.scrollY - videoSection.offsetTop) / videoPlayBack;
+    }
 
     window.addEventListener("scroll", () => {
         const current = document.querySelector(".list-item#on");
@@ -73,6 +113,32 @@
 
             flyingSanta.style.transform = `translateX(${translateX}px) translateY(${translateY}px) rotate(${rotatingDegree}deg)`;
         }
+
+        centerElement("fixed-wrapper", videoElement);
+
+        if (window.scrollY > videoSection.offsetTop + videoSection.offsetHeight - (fixedWrapper.offsetHeight + (document.documentElement.clientHeight - fixedWrapper.offsetHeight) / 2)) {
+            
+
+            fixedWrapper.style.position = "relative";
+            fixedWrapper.style.top = "initial";
+            fixedWrapper.style.left = "initial";
+            fixedWrapper.style.transform = `translateY(${videoSection.offsetHeight - fixedWrapper.offsetHeight}px)`;
+        }
+
+        if (window.scrollY > fixedDescriptionAppearTiming && window.scrollY < fixedDescriptionDisappearTiming) {
+            fixedDescription.style.transform = `translateY(${fixedDescriptionDisappearTiming - window.scrollY}px)`;
+            fixedDescription.style.opacity = (window.scrollY - fixedDescriptionAppearTiming) / (fixedDescriptionDisappearTiming - fixedDescriptionAppearTiming);
+        } else if (window.scrollY > fixedDescriptionDisappearTiming) {
+            fixedDescription.style.transform = `translateY(0px)`;
+            fixedDescription.style.opacity = 1;
+        } else {
+            fixedDescription.style.transform = `translateY(230px)`;
+            fixedDescription.style.opacity = 0;
+        }
+    });
+
+    videoElement.addEventListener("loadedmetadata", () => {
+        document.getElementById("video-section").style.height = videoElement.duration * videoPlayBack + "px";
     });
 </script>
 </html>
