@@ -48,6 +48,25 @@
                  </div>
             </div>
         </section>
+        <div id="bank-beyond-wrapper">
+            <div id="bank-beyond">
+                <img width='315px' src="./imgs/05-text.png" alt="bank-beyond">
+            </div>
+        </div>
+        <div id="white-wrapper">
+            <div id="slider-container">
+                <div id="slider-content-wrapper">
+                    <div id="slider-content">
+                        <img src="https://picsum.photos/id/1/600/933" class="slider-image" alt="">
+                        <img src="https://picsum.photos/id/5/600/933" class="slider-image" alt="">
+                        <img src="https://picsum.photos/id/9/600/933" class="slider-image" alt="">
+                    </div>
+                </div>
+                <div class="slider-button" id="left-button">&lt;</div>
+                <div id="slider-index">1/3</div>
+                <div class="slider-button" id="right-button">&gt;</div>
+            </div>
+        </div>
     </main>
 </body>
 
@@ -116,6 +135,18 @@
 
         centerElement("fixed-wrapper", videoElement);
 
+        if (fixedDescriptionAppearTiming  < window.scrollY && window.scrollY < fixedDescriptionDisappearTiming) {
+            fixedDescription.style.transform = `translateY(${fixedDescriptionDisappearTiming - window.scrollY}px)`;
+            fixedDescription.style.opacity = (window.scrollY - fixedDescriptionAppearTiming) / (fixedDescriptionDisappearTiming - fixedDescriptionAppearTiming);
+        } else if (window.scrollY > fixedDescriptionDisappearTiming) {
+            fixedDescription.style.transform = `translateY(0px)`;
+            fixedDescription.style.opacity = 1;
+
+        } else {
+            fixedDescription.style.transform = `translateY(230px)`;
+            fixedDescription.style.opacity = 0;
+        }
+
         if (window.scrollY > videoSection.offsetTop + videoSection.offsetHeight - (fixedWrapper.offsetHeight + (document.documentElement.clientHeight - fixedWrapper.offsetHeight) / 2)) {
             
 
@@ -123,22 +154,46 @@
             fixedWrapper.style.top = "initial";
             fixedWrapper.style.left = "initial";
             fixedWrapper.style.transform = `translateY(${videoSection.offsetHeight - fixedWrapper.offsetHeight}px)`;
-        }
-
-        if (window.scrollY > fixedDescriptionAppearTiming && window.scrollY < fixedDescriptionDisappearTiming) {
-            fixedDescription.style.transform = `translateY(${fixedDescriptionDisappearTiming - window.scrollY}px)`;
-            fixedDescription.style.opacity = (window.scrollY - fixedDescriptionAppearTiming) / (fixedDescriptionDisappearTiming - fixedDescriptionAppearTiming);
-        } else if (window.scrollY > fixedDescriptionDisappearTiming) {
-            fixedDescription.style.transform = `translateY(0px)`;
-            fixedDescription.style.opacity = 1;
-        } else {
-            fixedDescription.style.transform = `translateY(230px)`;
             fixedDescription.style.opacity = 0;
         }
+
+        // centerElement("bank-beyond-wrapper");
     });
 
     videoElement.addEventListener("loadedmetadata", () => {
         document.getElementById("video-section").style.height = videoElement.duration * videoPlayBack + "px";
     });
+
+    let currentImage = 0;
+
+    const sliderContentWrapper = document.getElementById("slider-content-wrapper");
+    const sliderImages = document.querySelectorAll('.slider-image');
+    const sliderIndex = document.getElementById("slider-index");
+
+    const handleSliderChange = (step) => {
+        currentImage += step;
+
+        if (currentImage < 0) currentImage = sliderImages.length-1;
+        else if (currentImage >= sliderImages.length) currentImage = 0;
+
+        sliderContentWrapper.scrollLeft = sliderImages[currentImage].offsetLeft;
+        sliderIndex.innerText = `${currentImage + 1}/${sliderImages.length}`;
+    }
+
+    document.getElementById("left-button").addEventListener("click", () => {
+        handleSliderChange(-1);
+    });
+    document.getElementById("right-button").addEventListener("click", () => {
+        handleSliderChange(1);
+    });
+
+    sliderContentWrapper.addEventListener("scroll", () => {
+        const imageWidth = document.querySelectorAll('.slider-image')[0].offsetWidth;
+
+        currentImage = Math.round(sliderContentWrapper.scrollLeft / imageWidth);
+        sliderIndex.innerText = `${currentImage + 1}/${sliderImages.length}`;
+    })
+
+
 </script>
 </html>
