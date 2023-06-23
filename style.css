@@ -107,3 +107,67 @@ body {
     font-weight: 800;
     letter-spacing: normal;
 }
+
+.header {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.circle {
+    position: absolute;
+    display: inline-block;
+    width: 350px;
+    height: 350px;
+    border: 1px solid rgba(0, 0, 0, .4);
+    border-radius: 50%;
+}
+
+#circle-1 {
+    top: -100px;
+    left: -130px;
+}
+
+#circle-2 {
+    bottom: 5vh;
+    right: -230px;
+}
+
+
+.cube__image {
+    position: absolute;
+    opacity: .45;
+}
+
+#cube__image_1 {
+    top: 15%;
+    left: 15%;
+    width: 15%;
+}
+#cube__image_2 {
+    top: 55%;
+    left: 15%;
+    width: 20%;
+}
+#cube__image_3 {
+    top: 20%;
+    left: 70%;
+    width: 13%;
+}
+#cube__image_4 {
+    top: 60%;
+    left: 70%;
+    width: 20%;
+}
+
+.header__title {
+    position: absolute;
+    top: 30vh;
+    width: 100%;
+    font-size: 7.5rem;
+    font-weight: 400;
+    line-height: 8.625rem;
+    color: rgb(213, 165,78);
+    text-align: center;
+}

@@ -22,7 +22,16 @@
         </button>
     </section>
     <section class="header hidden-area">
-        Header
+        <span class="circle" id="circle-1"></span>
+        <span class="circle" id="circle-2"></span>
+        <img src="./imgs/Lovepik_com-401467010-cube.png" alt="cube image" class="cube__image" id="cube__image_1">
+        <img src="./imgs/Lovepik_com-401467010-cube.png" alt="cube image" class="cube__image" id="cube__image_2">
+        <img src="./imgs/Lovepik_com-401467010-cube.png" alt="cube image" class="cube__image" id="cube__image_3">
+        <img src="./imgs/Lovepik_com-401467010-cube.png" alt="cube image" class="cube__image" id="cube__image_4">
+        <h1 class="header__title">
+            <div>LAST ART</div>
+            <div>PROJECTS</div>
+        </h1>
     </section>
 </body>
 <script>
@@ -54,6 +63,7 @@
     let scale = 1;
 
     const preloaderHideThreshold = 18;
+    const header = document.querySelector(".header");
 
     preloaderBtn.addEventListener("mousedown", () => {
         intervalId = setInterval(() => {
@@ -62,8 +72,6 @@
             setPreloaderStyle(scale);
 
             if (scale >= 1 + preloaderHideThreshold) {
-                const header = document.querySelector(".header");
-
                 document.querySelector(".preloader").classList.add("hidden-area");
 
                 header.classList.remove("hidden-area");
@@ -86,6 +94,21 @@
             }
         }, 10);
     })
+
+    header.addEventListener("mousemove", (e) => {
+        const xRelativeToHeader = e.clientX / header.clientWidth;
+        const yRelativeToHeader = e.clientY / header.clientHeight;
+
+        document.querySelector(".header__title").style.transform = `translate(${xRelativeToHeader * -50}px, ${yRelativeToHeader * -50}px)`;
+    
+        document.querySelector("#circle-1").style.transform = `translate(${xRelativeToHeader * -25}px, ${yRelativeToHeader * -25}px)`;
+        document.querySelector("#circle-2").style.transform = `translate(${xRelativeToHeader * 25}px, ${yRelativeToHeader * -25}px)`;
+        
+        document.querySelector("#cube__image_1").style.transform = `translate(${xRelativeToHeader * -10}px, ${yRelativeToHeader * -25}px)`;
+        document.querySelector("#cube__image_2").style.transform = `translate(${xRelativeToHeader * 15}px, ${yRelativeToHeader * 25}px)`;
+        document.querySelector("#cube__image_3").style.transform = `translate(${xRelativeToHeader * 10}px, ${yRelativeToHeader * 10}px)`;
+        document.querySelector("#cube__image_4").style.transform = `translate(${xRelativeToHeader * 25}px, ${yRelativeToHeader * -25}px)`;
+    });
 
     function createRipple(e) {
         let ripple = document.createElement("span");
