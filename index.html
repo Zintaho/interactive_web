@@ -8,11 +8,29 @@
     <style>
         canvas {
             background-color: #4455bb;
+            filter: url('#gooey');
         }
     </style>
 </head>
 <body>
     <canvas></canvas>
+    <svg>
+        <defs>
+            <filter id="gooey">
+                <feGaussianBlur 
+                    stdDeviation="40"
+                    in="SourceGraphic"
+                    result="blur1"
+                />
+                <feColorMatrix 
+                    in="blur1"
+                    type="matrix"
+                    values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 500 -20"
+                    result="contrast"
+                />
+            </filter>
+        </defs>
+    </svg>
     <script type="module" src="./index.js"></script>
 </body>
 </html>
